@@ -8,6 +8,9 @@ inputs:
   token:
     description: 'Vultr API Key'
     required: true
+  command:
+    description: 'Command to run to verify API key'
+    default: 'account'
 runs:
   using: 'node12'
   main: 'dist/index.js'

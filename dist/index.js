@@ -5324,7 +5324,7 @@ async function downloadDoctl(version) {
 }
 
 async function run() {
-  try { 
+  try {
     var version = core.getInput('version');
     if ((!version) || (version.toLowerCase() === 'latest')) {
         version = await octokit.repos.getLatestRelease({
@@ -5356,7 +5356,9 @@ Failed to retrieve latest version; falling back to: ${fallbackVersion}`);
 
     var token = core.getInput('token', { required: true });
     process.env.VULTR_API_KEY = token;
-    await exec.exec('vultr-cli account');
+
+    var cmd = core.getInput('command', { required: true });
+    await exec.exec(`vultr-cli ${cmd}`);
     core.info('>>> Successfully installed vultr-cli and confirmed API key');
   }
   catch (error) {
